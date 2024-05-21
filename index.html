@@ -4,49 +4,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do-Application</title>
+    <title>To-Do Application</title>
 
-<style>
-    .action-container{
-        display: flex;
-        justify-content: center;
-        margin: 20px auto;
-    }
-</style>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            height: 100vh;
+            color: #495057;
+        }
+
+        .list-container {
+            width: 350px;
+            height: 450px;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #adb5bd #dee2e6;
+        }
+
+        .list-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .list-container::-webkit-scrollbar-thumb {
+            background-color: #adb5bd;
+            border-radius: 10px;
+        }
+
+        .list-container::-webkit-scrollbar-track {
+            background: #dee2e6;
+            border-radius: 10px;
+        }
+
+        .todo-item {
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background-color: #f1f3f5;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        .todo-item:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .action-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px auto;
+            width: 350px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            margin-right: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #80bdff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:active {
+            background-color: #004085;
+            transform: scale(0.98);
+        }
+
+        button:focus {
+            outline: none;
+        }
+    </style>
 
 </head>
 
 <body>
 
     <div class="list-container" id="list-container">
-
+        <div class="todo-item">Task-1</div>
     </div>
+
     <div class="action-container">
-
-        <input type="text" id="input-todo">
+        <input type="text" id="input-todo" placeholder="Enter a task">
         <button onclick="add()">Add</button>
-        <button onclick="show()">show</button>
-        
     </div>
-
-
-
-
 
     <script>
-        const todoList = []
+        const todoList = [];
 
         function add() {
-            const inputElement = document.getElementById('input-todo')
-            todoList.push(inputElement.value)
-            inputElement.value = ""
-
-          
+            const inputElement = document.getElementById('input-todo');
+            todoList.push(inputElement.value);
+            inputElement.value = "";
+            renderToDoList();
         }
-        function show() {
-            // console.log(todoList)
-            const listcontainer = document.getElementById('list-container')
 
+        function renderToDoList() {
+            const listcontainer = document.getElementById('list-container');
+            listcontainer.innerHTML = "";
+
+            for (const todoItem of todoList) {
+                listcontainer.innerHTML += `<div class="todo-item"><input type="checkbox"/> ${todoItem}</div>`;
+            }
         }
     </script>
 
