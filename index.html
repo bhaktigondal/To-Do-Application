@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do-Application</title>
+
+<style>
+    .action-container{
+        display: flex;
+        justify-content: center;
+        margin: 20px auto;
+    }
+</style>
+
 </head>
+
 <body>
-    
+
+    <div class="list-container" id="list-container">
+
+    </div>
+    <div class="action-container">
+
+        <input type="text" id="input-todo">
+        <button onclick="add()">Add</button>
+        <button onclick="show()">show</button>
+        
+    </div>
+
+
+
+
+
+    <script>
+        const todoList = []
+
+        function add() {
+            const inputElement = document.getElementById('input-todo')
+            todoList.push(inputElement.value)
+            inputElement.value = ""
+
+          
+        }
+        function show() {
+            // console.log(todoList)
+            const listcontainer = document.getElementById('list-container')
+
+        }
+    </script>
+
 </body>
+
 </html>
