@@ -124,11 +124,18 @@
     </div>
 
     <script>
-        const todoList = [];
+        let todoList = [];
+        const listfromlocalstorage = localStorage.getItem("todoList");
+        // console.log(listfromlocalstorage)
+        if(listfromlocalstorage){
+            todoList = JSON.parse(listfromlocalstorage);
+            renderToDoList();
+        }
 
         function add() {
             const inputElement = document.getElementById('input-todo');
             todoList.push(inputElement.value);
+            localStorage.setItem("todoList", JSON.stringify(todoList))
             inputElement.value = "";
             renderToDoList();
         }
